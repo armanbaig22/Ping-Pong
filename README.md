@@ -10,7 +10,6 @@ This is a simple implementation of the classic Pong game using Python and Pygame
 Apologies for the confusion. To format the command properly, you can use the following format:
 
 ```bash
-# Run in the same directory as the project
 pip install pygame
 ```
 
@@ -21,7 +20,6 @@ pip install pygame
 2. Navigate to the directory where you cloned or downloaded the source code.
 3. Run the following command to start the game:
 ```bash
-#
 pip install pygame
 ```
 
