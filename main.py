@@ -27,6 +27,7 @@ menu.hold()
 scoreboard = ScoreBoard(screen)  # Create ScoreBoard instance outside the game loop
 line = Line(screen)
 line.draw()
+
 while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -44,7 +45,9 @@ while running:
     ball.draw()
     ball.move(dt)
 
-    if ball.pos.y >= 600.0 or ball.pos.y <= 0.0:
+    # check collision with top and bottom walls
+
+    if ball.pos.y >= screen.get_height()-10 or ball.pos.y <= 10:
         ball.bounce_y()
 
     # conditions to check collision with paddles
