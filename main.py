@@ -4,6 +4,7 @@ from ball import Ball
 from score import ScoreBoard
 from line import Line
 from menu import Menu
+
 # Initialize pygame
 pygame.init()
 
@@ -13,6 +14,10 @@ pygame.display.set_caption('Pong')
 clock = pygame.time.Clock()
 running = True
 dt = 0
+
+# Load sound effects
+bounce_sound = pygame.mixer.Sound('bounce.wav')
+score_sound = pygame.mixer.Sound('score.wav')
 
 paddle1_pos = pygame.Vector2(10, screen.get_height() / 2 - 50)
 paddle2_pos = pygame.Vector2(screen.get_width() - 30, screen.get_height() / 2 - 50)
@@ -49,26 +54,29 @@ while running:
 
     if ball.pos.y >= screen.get_height()-10 or ball.pos.y <= 10:
         ball.bounce_y()
+        bounce_sound.play()  # Play bounce sound effect
 
     # conditions to check collision with paddles
-
     if 40 >= ball.pos.x > 20 and 0 <= ball.pos.y - paddle1_pos.y < 100:
         ball.pos.x = 40
         ball.bounce_x()
+        bounce_sound.play()  # Play bounce sound effect
 
     if screen.get_width() - 40 <= ball.pos.x < screen.get_width() - 20 and 0 <= ball.pos.y - paddle2_pos.y < 100:
         ball.pos.x = screen.get_width() - 40
         ball.bounce_x()
+        bounce_sound.play()  # Play bounce sound effect
 
     # conditions to check if ball is out of bounds
-
     if ball.pos.x >= 800:
         scoreboard.l_point()
         ball.reset_pos()
+        score_sound.play()  # Play score sound effect
 
     if ball.pos.x <= 0:
         scoreboard.r_point()
         ball.reset_pos()
+        score_sound.play()  # Play score sound effect
 
     keys = pygame.key.get_pressed()
 
@@ -87,6 +95,3 @@ while running:
     dt = clock.tick(2000) / 2000
 
 pygame.quit()
-
-
-
